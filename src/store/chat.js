@@ -22,10 +22,12 @@ export default {
   mutations: { mutation },
   actions: {
     openChatWithContact({ commit, dispatch }, contact = {}) {
-      setPageTitle(contact.name);
       commit("mutation", { prop: "messages", value: [] });
       commit("mutation", { prop: "activeChat", value: contact });
-      dispatch("fetchPreviousMessages", contact.id);
+      if (contact) {
+        dispatch("fetchPreviousMessages", contact.id);
+        setPageTitle(contact.name);
+      }
     },
     sendMessage({ commit, state }, message = "") {
       const { messages, activeChat } = state;

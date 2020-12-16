@@ -28,7 +28,7 @@ export default {
   mutations: { mutation },
   actions: {
     async fetchAllContacts({ commit }) {
-      const { docs } = await contactCollection.get();
+      const { docs } = await contactCollection.orderBy("name").get();
       const contacts = docs.map((doc) => doc.data());
       commit("mutation", { prop: "contacts", value: contacts });
     },

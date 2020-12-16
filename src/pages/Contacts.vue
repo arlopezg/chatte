@@ -1,15 +1,22 @@
 <template>
-  <ContactList
-    class="scrollable__y h-screen w-full"
-  />
+  <div>
+    <Conversation v-if="activeChat" />
+    <ContactList v-else class="scrollable__y h-screen w-full" />
+  </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 import ContactList from "@/components/contacts/ContactList.vue";
+import Conversation from "@/components/conversation/Conversation.vue";
 
 export default {
-  components: { ContactList },
+  components: { ContactList, Conversation },
   name: "Contacts",
+  computed: {
+    ...mapState("chat", ["activeChat"]),
+  },
 };
 </script>
 
