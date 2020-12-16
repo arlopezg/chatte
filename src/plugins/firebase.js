@@ -25,6 +25,7 @@ const auth = firebase.auth();
 
 // collection references
 const contactCollection = db.collection("contacts");
+const messageCollection = db.collection("messages");
 
 // export utils/refs
-export { db, auth, contactCollection };
+export { db, auth, contactCollection, messageCollection };

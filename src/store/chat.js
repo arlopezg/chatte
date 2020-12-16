@@ -1,11 +1,11 @@
+import { setPageTitle } from "@/utils";
+import { messageCollection } from "@/plugins/firebase";
+
 import mutation from "./mutation";
 
 export default {
   namespaced: true,
-  state: () => ({
-    activeChat: null,
-    messages: [],
-  }),
+  state: () => ({ activeChat: null, messages: [], state: "idle" }),
   getters: {
     /**
      * @method filteredContacts
@@ -21,19 +21,34 @@ export default {
   },
   mutations: { mutation },
   actions: {
-    openChatWithContact({ commit }, contact = {}) {
+    openChatWithContact({ commit, dispatch }, contact = {}) {
+      setPageTitle(contact.name);
+      commit("mutation", { prop: "messages", value: [] });
       commit("mutation", { prop: "activeChat", value: contact });
+      dispatch("fetchPreviousMessages", contact.id);
     },
     sendMessage({ commit, state }, message = "") {
-      const { messages } = state;
+      const { messages, activeChat } = state;
       const messageData = {
         timestamp: new Date().getTime(),
         message,
         fromMe: true,
+        threadId: activeChat.id,
       };
       const newMessages = [...messages, messageData];
 
       commit("mutation", { prop: "messages", value: newMessages });
+      messageCollection.doc().set(messageData);
+    },
+    async fetchPreviousMessages({ commit }, threadId) {
+      commit("mutation", { prop: "state", value: "loading" });
+      const { docs } = await messageCollection
+        .orderBy("timestamp")
+        .where("threadId", "==", threadId)
+        .get();
+      const messages = docs.map((doc) => doc.data());
+      commit("mutation", { prop: "state", value: "idle" });
+      commit("mutation", { prop: "messages", value: messages });
     },
   },
 };

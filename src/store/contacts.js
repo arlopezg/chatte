@@ -6,9 +6,7 @@ export default {
   namespaced: true,
   state: () => ({
     contacts: [],
-    filters: {
-      name: "",
-    },
+    filters: { name: "" },
   }),
   getters: {
     /**
@@ -19,8 +17,6 @@ export default {
      */
     filteredContacts: (state) => {
       const { contacts = [], filters } = state;
-
-      console.log("State", state);
 
       return contacts.filter((contact) => {
         const nameRegexp = new RegExp(filters.name, "ig");
@@ -38,6 +34,6 @@ export default {
     },
     setContactFilters({ commit }, filters = {}) {
       commit("mutation", { prop: "filters", value: filters });
-    },
+    }
   },
 };

@@ -4,7 +4,7 @@
       class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-full"
       type="search"
       v-model="search"
-      placeholder="Search"
+      :placeholder="placeholder"
     />
     <button type="button" class="absolute right-0 top-0 mt-5 mr-4">
       <svg
@@ -32,6 +32,9 @@
 <script>
 export default {
   name: "SearchBar",
+  props: {
+    placeholder: {type: String, default: "Search"}
+  },
   data: () => ({ search: "" }),
   watch: {
     search(newValue) {
