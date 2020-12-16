@@ -1,8 +1,15 @@
 <template>
-  <div class="bg-gray-300">
-    <SearchBar class="px-3" @input="filterContactsByName" />
+  <div class="bg-gray-200">
+    <SearchBar
+      class="px-3"
+      placeholder="Search a contact"
+      @input="filterContactsByName"
+    />
 
-    <p v-show="!filteredContacts().length" class="text-center m-3">
+    <p
+      v-show="!filteredContacts().length"
+      class="text-center text-gray-500 m-3"
+    >
       No contacts found
     </p>
     <List
