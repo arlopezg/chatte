@@ -1,7 +1,7 @@
 <template>
   <ul class="list list-style-none">
     <li v-for="(item, index) in children" :key="index">
-      <component :is="childComponent" />
+      <component v-bind="item" :is="childComponent" />
     </li>
   </ul>
 </template>
