@@ -1,6 +1,8 @@
 <template>
   <section class="home flex">
-    <ContactList class="home--contacts scrollable__y w-full md:w-1/4" />
+    <ContactList
+      class="home--contacts scrollable__y hidden md:block md:w-1/4"
+    />
     <ConversationContainer />
   </section>
 </template>

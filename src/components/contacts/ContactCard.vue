@@ -10,7 +10,7 @@
         :alt="contact.name"
         class="contact--avatar rounded-full bg-blue-300 mx-auto md:mr-3"
       />
-      <figcaption class="contact--name">
+      <figcaption class="contact--name px-3 md:p-0">
         <span>{{ contact.name }}</span>
         <span class="block text-gray-500 text-xs">{{ contact.status }}</span>
       </figcaption>
