@@ -36,4 +36,4 @@ yarn lint
 
 ### Known issues
 
--
+- May need to adjust text input bar on certain mobile devices (iPhone 8 at least) as browser UI has a bit of overlap
