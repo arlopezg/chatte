@@ -1,24 +1,39 @@
-# cognite-chat-demo
+# Chatte
 
-## Project setup
+**Welcome to Chatte**. Chatte is a demo messaging app made by Alejandro with ❤️
+
+## Project requirements
+
+To run this project locally, you'll need the following dependencies.
+
+- Node 12.x
+- Yarn
+- Everything else is already listed in `package.json` :)
+
+## Project installation
+
+To install this project, just run
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Useful scripts
+
+- Run the app in dev mode:
 ```
-yarn serve
+yarn dev
 ```
 
-### Compiles and minifies for production
+- Compile and minify for production:
 ```
 yarn build
 ```
 
-### Lints and fixes files
+- Lint and fix files
 ```
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Known issues
+
+-
