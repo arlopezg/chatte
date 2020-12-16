@@ -6,7 +6,7 @@
 
 - Vue 2
 - State management with VueX
-- SASS
+- SASS with [7-1 folder structure](https://openclassrooms.com/en/courses/5625786-produce-maintainable-css-with-sass/5723581-use-the-7-1-pattern-for-a-manageable-codebase)
 - Deployed with Firebase at https://cognite-chat-demo.web.app
 - Messages and Contacts are stored on Cloud Firestore
 - Many characters from your favorite TV series 😉
