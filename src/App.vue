@@ -9,9 +9,17 @@
 </template>
 
 <script>
+import { setPageTitle } from "@/utils";
+import store from "@/store";
+
 import Navbar from "@/components/layout/Navbar.vue";
+
 export default {
   components: { Navbar },
   name: "App",
+  created() {
+    setPageTitle();
+  },
+  store,
 };
 </script>

@@ -1,14 +1,16 @@
 <template>
-  <section class="home">
-    <ContactList class="home--contacts scrollable__y" />
+  <section class="home flex">
+    <ContactList class="home--contacts scrollable__y w-full md:w-1/4" />
+    <ConversationContainer />
   </section>
 </template>
 
 <script>
 import ContactList from "@/components/contacts/ContactList.vue";
+import ConversationContainer from "../components/conversation/ConversationContainer.vue";
 
 export default {
-  components: { ContactList },
+  components: { ContactList, ConversationContainer },
   name: "Home",
 };
 </script>
@@ -16,11 +18,7 @@ export default {
 <style lang="scss">
 .home {
   &--contacts {
-    width: 100%;
-    height: 100vh;
-    @screen md {
-      max-width: 35%;
-    }
+    height: calc(100vh - 100px);
   }
 }
 </style>
