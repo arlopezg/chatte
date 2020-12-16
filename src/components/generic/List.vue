@@ -1,7 +1,7 @@
 <template>
   <ul class="list list-style-none">
     <li v-for="(item, index) in children" :key="index">
-      <component v-bind="item" :is="childComponent" />
+      <component v-bind:[bindToProp]="item" :is="childComponent" />
     </li>
   </ul>
 </template>
@@ -14,6 +14,7 @@ const defaultListOptions = {
 
 export default {
   props: {
+    bindToProp: { type: String, required: true },
     childComponent: { required: true },
     children: { type: Array, default: () => [] },
     options: {

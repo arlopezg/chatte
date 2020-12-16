@@ -1,26 +1,32 @@
 <template>
-  <div :title="name" class="contact flex items-center cursor-pointer">
+  <div
+    :title="contact.name"
+    class="contact flex items-center cursor-pointer"
+    @click="openChatWithContact(contact)"
+  >
     <figure class="flex items-center">
       <img
-        :src="picture"
-        :alt="name"
+        :src="contact.picture"
+        :alt="contact.name"
         class="contact--avatar rounded-full bg-blue-300 mx-auto md:mr-3"
       />
       <figcaption class="contact--name">
-        <span>{{ name }}</span>
-        <span class="block text-gray-500 text-xs">{{ status }}</span>
+        <span>{{ contact.name }}</span>
+        <span class="block text-gray-500 text-xs">{{ contact.status }}</span>
       </figcaption>
     </figure>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "ContactCard",
   props: {
-    name: { type: String, default: "" },
-    picture: { type: String, default: "" },
-    status: { type: String, default: "" },
+    contact: { type: Object, required: true },
+  },
+  methods: {
+    ...mapActions("chat", ["openChatWithContact"]),
   },
 };
 </script>

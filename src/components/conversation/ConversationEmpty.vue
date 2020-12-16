@@ -11,7 +11,9 @@
 
 <script>
 import Logo from "../generic/Logo.vue";
+
 export default {
+  name: "ConversationEmpty",
   components: { Logo },
 };
 </script>

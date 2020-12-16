@@ -2,7 +2,12 @@
   <div class="bg-gray-300">
     <SearchBar class="px-3" @input="filterContactsByName" />
 
+    <p v-show="!filteredContacts().length" class="text-center m-3">
+      No contacts found
+    </p>
     <List
+      v-show="filteredContacts().length"
+      bind-to-prop="contact"
       :children="filteredContacts()"
       :child-component="contactCard"
       class="p-3"
