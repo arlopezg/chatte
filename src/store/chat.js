@@ -5,18 +5,18 @@ import mutation from "./mutation";
 
 export default {
   namespaced: true,
-  state: () => ({ activeChat: null, messages: [], state: "idle" }),
+  state: () => ({
+    activeChat: null,
+    messages: [],
+    state: "idle",
+    drafts: {},
+  }),
   getters: {
-    /**
-     * @method filteredContacts
-     * @description Apply filters to current fetched contacts
-     */
-    filteredContacts: ({ filters, contacts }) => {
-      return contacts.filter((contact) => {
-        const nameRegexp = new RegExp(filters.name, "ig");
-
-        return contact.name.match(nameRegexp);
-      });
+    hasDraft(state) {
+      return (contactId) => !!state.drafts[contactId];
+    },
+    getDraft(state) {
+      return (contactId) => state.drafts[contactId];
     },
   },
   mutations: { mutation },
@@ -51,6 +51,11 @@ export default {
       const messages = docs.map((doc) => doc.data());
       commit("mutation", { prop: "state", value: "idle" });
       commit("mutation", { prop: "messages", value: messages });
+    },
+    setDraft({ commit, state }, { id, message }) {
+      const { drafts: newDrafts } = state;
+      newDrafts[id] = message;
+      commit("mutation", { prop: "drafts", value: newDrafts });
     },
   },
 };
