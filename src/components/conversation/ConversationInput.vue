@@ -13,12 +13,33 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "ConversationInput",
   data: () => ({ message: "" }),
+  computed: {
+    ...mapState("chat", ["activeChat", "drafts"]),
+  },
+  watch: {
+    "activeChat.id": {
+      handler(newId, previousId) {
+        const hasDraft = this.hasDraft()(newId);
+
+        if (hasDraft) {
+          const draft = this.getDraft()(newId);
+          this.message = draft;
+          return;
+        }
+
+        const { message } = this;
+        message && this.setDraft({ id: previousId, message });
+        this.message = "";
+      },
+    },
+  },
   methods: {
-    ...mapActions("chat", ["sendMessage"]),
+    ...mapActions("chat", ["sendMessage", "setDraft"]),
+    ...mapGetters("chat", ["hasDraft", "getDraft"]),
     send() {
       if (!this.message) {
         return;
